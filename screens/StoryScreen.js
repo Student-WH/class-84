@@ -26,9 +26,7 @@ export default class StoryScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fontsLoaded: false,
-      speakerColor: "gray",
-      speakerIcon: "volume-high-outline"
+      
     };
   }
 
@@ -42,18 +40,7 @@ export default class StoryScreen extends Component {
   }
 
   async initiateTTS(title, author, story, moral) {
-    const current_color = this.state.speakerColor;
-    this.setState({
-      speakerColor: current_color === "gray" ? "#ee8249" : "gray"
-    });
-    if (current_color === "gray") {
-      Speech.speak(`${title} by ${author}`);
-      Speech.speak(story);
-      Speech.speak("The moral of the story is!");
-      Speech.speak(moral);
-    } else {
-      Speech.stop();
-    }
+  
   }
 
   render() {
@@ -63,75 +50,7 @@ export default class StoryScreen extends Component {
       return <AppLoading />;
     } else {
       return (
-        <View style={styles.container}>
-          <SafeAreaView style={styles.droidSafeArea} />
-          <View style={styles.appTitle}>
-            <View style={styles.appIcon}>
-              <Image
-                source={require("../assets/logo.png")}
-                style={styles.iconImage}
-              ></Image>
-            </View>
-            <View style={styles.appTitleTextContainer}>
-              <Text style={styles.appTitleText}>Storytelling App</Text>
-            </View>
-          </View>
-          <View style={styles.storyContainer}>
-            <ScrollView style={styles.storyCard}>
-              <Image
-                source={require("../assets/story_image_1.png")}
-                style={styles.image}
-              ></Image>
-
-              <View style={styles.dataContainer}>
-                <View style={styles.titleTextContainer}>
-                  <Text style={styles.storyTitleText}>
-                    {this.props.route.params.story.title}
-                  </Text>
-                  <Text style={styles.storyAuthorText}>
-                    {this.props.route.params.story.author}
-                  </Text>
-                  <Text style={styles.storyAuthorText}>
-                    {this.props.route.params.story.created_on}
-                  </Text>
-                </View>
-                <View style={styles.iconContainer}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      this.initiateTTS(
-                        this.props.route.params.story.title,
-                        this.props.route.params.story.author,
-                        this.props.route.params.story.story,
-                        this.props.route.params.story.moral
-                      )
-                    }
-                  >
-                    <Ionicons
-                      name={this.state.speakerIcon}
-                      size={RFValue(30)}
-                      color={this.state.speakerColor}
-                      style={{ margin: RFValue(15) }}
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View style={styles.storyTextContainer}>
-                <Text style={styles.storyText}>
-                  {this.props.route.params.story.story}
-                </Text>
-                <Text style={styles.moralText}>
-                  Moral - {this.props.route.params.story.moral}
-                </Text>
-              </View>
-              <View style={styles.actionContainer}>
-                <View style={styles.likeButton}>
-                  <Ionicons name={"heart"} size={RFValue(30)} color={"white"} />
-                  <Text style={styles.likeText}>12k</Text>
-                </View>
-              </View>
-            </ScrollView>
-          </View>
-        </View>
+       
       );
     }
   }
