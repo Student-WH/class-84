@@ -23,12 +23,7 @@ let customFonts = {
 };
 
 export default class StoryScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-    };
-  }
+
 
   async _loadFontsAsync() {
     await Font.loadAsync(customFonts);
